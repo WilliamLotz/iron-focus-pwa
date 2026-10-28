@@ -1,17 +1,19 @@
-const CACHE_NAME = 'iron-focus-v1';
+const CACHE_NAME = 'iron-focus-v2';
 const ASSETS_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/logo.svg',
-  '/icon-192.png',
-  '/icon-512.png'
+  './',
+  './index.html',
+  './manifest.json',
+  './logo.svg',
+  './icon-192.png',
+  './icon-512.png'
 ];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE);
+      return cache.addAll(ASSETS_TO_CACHE).catch((err) => {
+        console.warn('Cache addAll warning:', err);
+      });
     })
   );
   self.skipWaiting();
@@ -33,7 +35,6 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  // Network first with cache fallback
   if (event.request.method !== 'GET') return;
   
   event.respondWith(
@@ -48,11 +49,9 @@ self.addEventListener('fetch', (event) => {
         return networkResponse;
       })
       .catch(() => {
-        return caches.match(event.request).then((cachedResponse) => {
-          if (cachedResponse) return cachedResponse;
-          if (event.request.mode === 'navigate') {
-            return caches.match('/');
-          }
+        return caches.match(event.request).then((cached) => {
+          if (cached) return cached;
+          return caches.match('./') || caches.match('./index.html');
         });
       })
   );
