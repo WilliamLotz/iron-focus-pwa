@@ -244,7 +244,7 @@ export default function LiveView({
   return (
     <div className="space-y-3 pb-40">
       {/* EN-TÊTE COMPACT ÉPURÉ DU MODE CONCENTRATION LIVE */}
-      <div className="sticky top-[calc(max(64px,env(safe-area-inset-top,64px))+88px)] z-30 bg-[#0A0A0A] border-b border-[#262626] px-3 py-1.5 shadow-md">
+      <div className="sticky top-[calc(max(54px,env(safe-area-inset-top,54px))+74px)] z-30 bg-[#0A0A0A] border-b border-[#262626] px-3 py-1.5 shadow-md">
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2 truncate">
             <span className="text-[9px] font-mono text-[#EF4444] uppercase tracking-widest font-black flex-shrink-0">
