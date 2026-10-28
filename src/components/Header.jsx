@@ -9,7 +9,7 @@ export default function Header({ currentUser, onOpenAuthModal, activeSession, on
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-[#0A0A0A]/95 backdrop-blur-md border-b border-[#262626] px-4 pt-[calc(max(60px,env(safe-area-inset-top,60px))+60px)] pb-4">
+    <header className="sticky top-0 z-40 bg-[#0A0A0A]/95 backdrop-blur-md border-b border-[#262626] px-4 pt-[max(75px,calc(env(safe-area-inset-top,0px)+20px))] pb-3">
       <div className="max-w-md mx-auto flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="w-3 h-3 bg-[#EF4444] inline-block"></span>
