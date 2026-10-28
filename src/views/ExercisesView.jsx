@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Search, Plus, Trash2, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { MUSCLE_GROUPS, EQUIPMENT_TYPES } from '../data/exercisesData';
-import AnatomySVG from '../components/AnatomySVG';
-import ExerciseIllustration from '../components/ExerciseIllustration';
+import ExerciseVisualCard from '../components/ExerciseVisualCard';
 
 export default function ExercisesView({
   userData,
@@ -16,7 +15,6 @@ export default function ExercisesView({
   const [selectedMuscle, setSelectedMuscle] = useState('ALL');
   const [selectedEquipment, setSelectedEquipment] = useState('ALL');
   const [expandedExerciseId, setExpandedExerciseId] = useState(null);
-  const [showBiomechId, setShowBiomechId] = useState(null);
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [newExercise, setNewExercise] = useState({
@@ -231,33 +229,18 @@ export default function ExercisesView({
                 </div>
               </div>
 
-              {/* DÉTAIL DÉPLIÉ : ILLUSTRATION SVG + ESSENTIEL */}
+              {/* DÉTAIL DÉPLIÉ : VISUEL HYBRIDE ANATOMIE + ANIMATION DÉMO */}
               {isExpanded && (
-                <div className="border-t border-[#262626] p-3 space-y-2 bg-[#0F0F0F]">
-                  {/* Visuel SVG en haut */}
-                  <div className="w-full border border-[#262626] overflow-hidden bg-[#0A0A0A]">
-                    <ExerciseIllustration exerciseId={ex.id} muscleGroup={ex.muscleGroup} />
-                  </div>
+                <div className="border-t border-[#262626] p-3 space-y-3 bg-[#0F0F0F]">
+                  {/* Visuel Hybride (Solution 1 : Anatomie & Repères + Solution 2 : Animation Réelle) */}
+                  <ExerciseVisualCard exercise={ex} />
 
-                  {/* Ligne Cible & Paramètres */}
-                  <div className="flex items-center justify-between text-xs font-mono bg-[#141414] border border-[#262626] p-2">
-                    <span className="text-[#A3A3A3] text-[11px] truncate pr-2">
-                      Cible: <strong className="text-white">{ex.primaryMuscles?.join(', ') || ex.muscleGroup}</strong>
+                  {/* Paramètres & Action : modifier charge */}
+                  <div className="flex items-center justify-between pt-1 border-t border-[#222222]">
+                    <span className="text-[10px] font-mono text-[#888888] tabular-nums">
+                      Format conseillé : {ex.defaultSets}×{ex.repRange} • {ex.restSeconds || 90}s
                     </span>
-                    <span className="text-[#888] shrink-0 text-[10px]">
-                      {ex.defaultSets}×{ex.repRange} • {ex.restSeconds || 90}s
-                    </span>
-                  </div>
 
-                  {/* 1 phrase courte pour l'exécution */}
-                  {ex.execution && (
-                    <p className="text-[11px] font-mono text-[#CCCCCC] leading-snug px-1">
-                      {ex.execution}
-                    </p>
-                  )}
-
-                  {/* Action : modifier charge */}
-                  <div className="flex items-center justify-between pt-1">
                     <button
                       onClick={() => {
                         const newWeightInput = prompt('Entrez votre nouvelle charge pour cet exercice (kg) :', maxWeight);
@@ -272,27 +255,7 @@ export default function ExercisesView({
                     >
                       MODIFIER CHARGE ({maxWeight} KG)
                     </button>
-
-                    <button
-                      onClick={() => setShowBiomechId(showBiomechId === ex.id ? null : ex.id)}
-                      className="text-[10px] font-mono text-[#737373] hover:text-white underline cursor-pointer"
-                    >
-                      {showBiomechId === ex.id ? 'Masquer anatomie' : '+ Anatomie'}
-                    </button>
                   </div>
-
-                  {/* Schéma anatomique visible uniquement si demandé */}
-                  {showBiomechId === ex.id && (
-                    <div className="pt-2 border-t border-[#222] space-y-2">
-                      <AnatomySVG anatomyKeys={ex.anatomyKeys} compact={true} />
-                      {ex.rationale && (
-                        <div className="bg-[#141414] p-2 border border-[#262626] text-[10px] font-mono text-[#888]">
-                          <span className="text-[#EF4444] font-bold block mb-0.5">UTILITÉ :</span>
-                          {ex.rationale}
-                        </div>
-                      )}
-                    </div>
-                  )}
                 </div>
               )}
             </div>
