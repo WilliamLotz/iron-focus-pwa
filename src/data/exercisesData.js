@@ -842,7 +842,7 @@ export const DEFAULT_EXERCISES = [
   {
     id: 'ex-14',
     name: 'Curl incliné aux haltères',
-    muscleGroup: 'Bras',
+    muscleGroup: 'Biceps',
     equipment: 'Haltères',
     defaultSets: 3,
     repRange: '10-12',
@@ -862,7 +862,7 @@ export const DEFAULT_EXERCISES = [
   {
     id: 'ex-15',
     name: 'Curl Pupitre (Preacher Curl)',
-    muscleGroup: 'Bras',
+    muscleGroup: 'Biceps',
     equipment: 'Machine',
     defaultSets: 3,
     repRange: '10-12',
@@ -882,7 +882,7 @@ export const DEFAULT_EXERCISES = [
   {
     id: 'ex-16',
     name: 'Extension Triceps poulie haute à la corde',
-    muscleGroup: 'Bras',
+    muscleGroup: 'Triceps',
     equipment: 'Poulie',
     defaultSets: 3,
     repRange: '12-15',
@@ -902,7 +902,7 @@ export const DEFAULT_EXERCISES = [
   {
     id: 'ex-17',
     name: 'Extension Triceps overhead à la poulie',
-    muscleGroup: 'Bras',
+    muscleGroup: 'Triceps',
     equipment: 'Poulie',
     defaultSets: 3,
     repRange: '10-12',
@@ -922,7 +922,7 @@ export const DEFAULT_EXERCISES = [
   {
     id: 'ex-bra-5',
     name: 'Curl barre droite',
-    muscleGroup: 'Bras',
+    muscleGroup: 'Biceps',
     equipment: 'Barre',
     defaultSets: 3,
     repRange: '8-12',
@@ -942,7 +942,7 @@ export const DEFAULT_EXERCISES = [
   {
     id: 'ex-bra-6',
     name: 'Curl haltères alterné',
-    muscleGroup: 'Bras',
+    muscleGroup: 'Biceps',
     equipment: 'Haltères',
     defaultSets: 3,
     repRange: '10-12',
@@ -962,7 +962,7 @@ export const DEFAULT_EXERCISES = [
   {
     id: 'ex-bra-7',
     name: 'Curl marteau',
-    muscleGroup: 'Bras',
+    muscleGroup: 'Biceps',
     equipment: 'Haltères',
     defaultSets: 3,
     repRange: '10-12',
@@ -982,7 +982,7 @@ export const DEFAULT_EXERCISES = [
   {
     id: 'ex-bra-8',
     name: 'Curl barre EZ',
-    muscleGroup: 'Bras',
+    muscleGroup: 'Biceps',
     equipment: 'Barre',
     defaultSets: 3,
     repRange: '10-12',
@@ -1002,7 +1002,7 @@ export const DEFAULT_EXERCISES = [
   {
     id: 'ex-bra-9',
     name: 'Extension barre couché (Skull Crusher)',
-    muscleGroup: 'Bras',
+    muscleGroup: 'Triceps',
     equipment: 'Barre',
     defaultSets: 3,
     repRange: '8-12',
@@ -1022,7 +1022,7 @@ export const DEFAULT_EXERCISES = [
   {
     id: 'ex-bra-10',
     name: 'Dips barre parallèles (focus triceps)',
-    muscleGroup: 'Bras',
+    muscleGroup: 'Triceps',
     equipment: 'Barre',
     defaultSets: 3,
     repRange: '8-15',
@@ -1042,7 +1042,7 @@ export const DEFAULT_EXERCISES = [
   {
     id: 'ex-bra-11',
     name: 'Kickback Triceps haltère',
-    muscleGroup: 'Bras',
+    muscleGroup: 'Triceps',
     equipment: 'Haltères',
     defaultSets: 3,
     repRange: '12-15',
@@ -1062,7 +1062,7 @@ export const DEFAULT_EXERCISES = [
   {
     id: 'ex-bra-12',
     name: 'Reverse Curl',
-    muscleGroup: 'Bras',
+    muscleGroup: 'Biceps',
     equipment: 'Barre',
     defaultSets: 3,
     repRange: '10-12',
@@ -1250,7 +1250,8 @@ export const MUSCLE_GROUPS = [
   'Dos',
   'Jambes',
   'Épaules',
-  'Bras',
+  'Biceps',
+  'Triceps',
   'Abdos'
 ];
 

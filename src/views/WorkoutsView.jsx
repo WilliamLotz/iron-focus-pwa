@@ -11,6 +11,7 @@ export default function WorkoutsView({
   const { workouts = [], exercises = [] } = userData;
   const [isCreating, setIsCreating] = useState(false);
   const [expandedRoutineId, setExpandedRoutineId] = useState(null);
+  const [routineToDelete, setRoutineToDelete] = useState(null);
 
   // Formulaire de création de séance
   const [name, setName] = useState('');
@@ -308,11 +309,7 @@ export default function WorkoutsView({
                 </div>
 
                 <button
-                  onClick={() => {
-                    if (window.confirm(`Supprimer le programme "${routine.name}" ?`)) {
-                      onDeleteWorkout(routine.id);
-                    }
-                  }}
+                  onClick={() => setRoutineToDelete(routine)}
                   className="text-[#737373] hover:text-[#EF4444] p-1.5 shrink-0 transition-colors cursor-pointer"
                   title="Supprimer ce programme"
                 >
@@ -364,6 +361,42 @@ export default function WorkoutsView({
           );
         }))}
       </div>
+
+      {/* Modale de Confirmation de Suppression Brutaliste */}
+      {routineToDelete && (
+        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-[#141414] border-2 border-[#EF4444] max-w-sm w-full p-4 space-y-3">
+            <div className="flex items-center gap-2 text-[#EF4444]">
+              <Trash2 size={18} />
+              <span className="font-mono font-black text-sm uppercase tracking-wider">
+                SUPPRIMER LE PROGRAMME
+              </span>
+            </div>
+            <p className="font-mono text-xs text-[#CCC] leading-relaxed">
+              Voulez-vous supprimer définitivement <strong className="text-white">"{routineToDelete.name}"</strong> ?
+            </p>
+            <div className="flex gap-2 pt-2">
+              <button
+                type="button"
+                onClick={() => setRoutineToDelete(null)}
+                className="flex-1 bg-[#262626] hover:bg-[#333] text-white py-2 text-xs font-mono font-bold uppercase transition-colors cursor-pointer"
+              >
+                ANNULER
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  onDeleteWorkout(routineToDelete.id);
+                  setRoutineToDelete(null);
+                }}
+                className="flex-1 bg-[#EF4444] hover:bg-[#DC2626] text-white py-2 text-xs font-mono font-black uppercase tracking-wider transition-colors cursor-pointer"
+              >
+                SUPPRIMER
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

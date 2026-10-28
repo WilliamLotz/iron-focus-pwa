@@ -106,7 +106,7 @@ export function checkProgressiveOverload(exerciseId, exercisesCatalog, workoutHi
  * Calcul du temps de repos par groupe musculaire à partir de l'historique
  */
 export function getMuscleRecoveryStatus(workoutHistory, exercisesCatalog) {
-  const muscleGroups = ['Pectoraux', 'Dos', 'Jambes', 'Épaules', 'Bras', 'Abdos'];
+  const muscleGroups = ['Pectoraux', 'Dos', 'Jambes', 'Épaules', 'Biceps', 'Triceps', 'Abdos'];
   const now = Date.now();
   const sortedHistory = [...(workoutHistory || [])].sort((a, b) => new Date(b.date) - new Date(a.date));
 

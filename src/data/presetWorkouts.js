@@ -2,7 +2,7 @@ export const PRESET_WORKOUTS = [
   {
     id: 'routine-push',
     name: 'PUSH DESTRUCTION (Pecs / Épaules / Triceps)',
-    targetMuscles: ['Pectoraux', 'Épaules', 'Bras'],
+    targetMuscles: ['Pectoraux', 'Épaules', 'Triceps'],
     description: 'Focus chaîne de poussée. Hypertrophie lourde et finition en tension continue.',
     exercises: [
       { exerciseId: 'ex-1', targetSets: 4, targetReps: '8-10', restSeconds: 120 },
@@ -17,7 +17,7 @@ export const PRESET_WORKOUTS = [
   {
     id: 'routine-pull',
     name: 'PULL HARDCORE (Dos / Biceps / Arrière Épaules)',
-    targetMuscles: ['Dos', 'Épaules', 'Bras'],
+    targetMuscles: ['Dos', 'Épaules', 'Biceps'],
     description: 'Densité et largeur dorsale avec isolation complète des fléchisseurs de bras.',
     exercises: [
       { exerciseId: 'ex-4', targetSets: 4, targetReps: '8-12', restSeconds: 120 },
@@ -43,8 +43,8 @@ export const PRESET_WORKOUTS = [
   },
   {
     id: 'routine-upper',
-    name: 'UPPER BODY BRUTAL (Pecs / Dos / Bras)',
-    targetMuscles: ['Pectoraux', 'Dos', 'Bras'],
+    name: 'UPPER BODY BRUTAL (Pecs / Dos / Biceps / Triceps)',
+    targetMuscles: ['Pectoraux', 'Dos', 'Biceps', 'Triceps'],
     description: 'Super-compensation du haut du corps en un seul entraînement condensé.',
     exercises: [
       { exerciseId: 'ex-1', targetSets: 4, targetReps: '8-10', restSeconds: 120 },
@@ -58,8 +58,8 @@ export const PRESET_WORKOUTS = [
   },
   {
     id: 'routine-shoulders-arms',
-    name: 'ARMOR 3D (Épaules & Bras Isolation)',
-    targetMuscles: ['Épaules', 'Bras', 'Abdos'],
+    name: 'ARMOR 3D (Épaules, Biceps & Triceps)',
+    targetMuscles: ['Épaules', 'Biceps', 'Triceps', 'Abdos'],
     description: 'Spécialisation bras et galbe deltoïdes complet pour une silhouette en V imposante.',
     exercises: [
       { exerciseId: 'ex-11', targetSets: 4, targetReps: '8-10', restSeconds: 120 },

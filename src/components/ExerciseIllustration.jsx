@@ -834,12 +834,12 @@ const illustrations = {
   ),
 
   // ==========================================================
-  // BRAS (12)
+  // BICEPS & TRICEPS (12)
   // ==========================================================
   'ex-14': () => (
     // Curl incliné aux haltères
     <svg viewBox="0 0 320 180" fill="none" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-      <CanvasBg label="BRAS // CURL INCLINÉ AUX HALTÈRES" />
+      <CanvasBg label="BICEPS // CURL INCLINÉ AUX HALTÈRES" />
       {/* Banc incliné 45° */}
       <line x1="120" y1="130" x2="165" y2="85" stroke="#333" strokeWidth="8" />
       <line x1="130" y1="125" x2="160" y2="90" stroke="#888" strokeWidth="12" strokeLinecap="square" />
@@ -855,7 +855,7 @@ const illustrations = {
   'ex-15': () => (
     // Curl Pupitre (Preacher Curl)
     <svg viewBox="0 0 320 180" fill="none" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-      <CanvasBg label="BRAS // CURL PUPITRE (PREACHER CURL)" />
+      <CanvasBg label="BICEPS // CURL PUPITRE (PREACHER CURL)" />
       {/* Pupitre incliné */}
       <polygon points="150,115 185,90 190,95 155,120" fill="#333" stroke="#444" />
       {/* Silhouette assise accoudée */}
@@ -873,7 +873,7 @@ const illustrations = {
   'ex-16': () => (
     // Extension Triceps poulie haute corde
     <svg viewBox="0 0 320 180" fill="none" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-      <CanvasBg label="BRAS // EXTENSION TRICEPS POULIE HAUTE" />
+      <CanvasBg label="TRICEPS // EXTENSION POULIE HAUTE" />
       {/* Poulie haute */}
       <circle cx="140" cy="35" r="5" fill="#444" />
       <line x1="140" y1="35" x2="155" y2="85" stroke="#EF4444" strokeWidth="2" strokeDasharray="3 2" />
@@ -889,7 +889,7 @@ const illustrations = {
   'ex-17': () => (
     // Extension Triceps overhead à la poulie
     <svg viewBox="0 0 320 180" fill="none" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-      <CanvasBg label="BRAS // TRICEPS EXTENSION OVERHEAD" />
+      <CanvasBg label="TRICEPS // EXTENSION OVERHEAD POULIE" />
       <circle cx="65" cy="55" r="5" fill="#444" />
       <line x1="65" y1="55" x2="145" y2="58" stroke="#EF4444" strokeWidth="2" strokeDasharray="3 2" />
       {/* Silhouette penchée en avant */}
@@ -906,7 +906,7 @@ const illustrations = {
   'ex-bra-5': () => (
     // Curl barre droite
     <svg viewBox="0 0 320 180" fill="none" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-      <CanvasBg label="BRAS // CURL BARRE DROITE" />
+      <CanvasBg label="BICEPS // CURL BARRE DROITE" />
       <line x1="160" y1="75" x2="160" y2="125" stroke="#888" strokeWidth="12" strokeLinecap="square" />
       <circle cx="160" cy="62" r="8" fill="#888" />
       {/* Coudes fixés, avant-bras en flexion complète */}
@@ -923,7 +923,7 @@ const illustrations = {
   'ex-bra-6': () => (
     // Curl haltères alterné
     <svg viewBox="0 0 320 180" fill="none" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-      <CanvasBg label="BRAS // CURL HALTÈRES ALTERNÉ" />
+      <CanvasBg label="BICEPS // CURL HALTÈRES ALTERNÉ" />
       <line x1="160" y1="75" x2="160" y2="125" stroke="#888" strokeWidth="12" strokeLinecap="square" />
       <circle cx="160" cy="62" r="8" fill="#888" />
       {/* Bras gauche en bas, bras droit en flexion avec supination */}
@@ -939,7 +939,7 @@ const illustrations = {
   'ex-bra-7': () => (
     // Curl marteau
     <svg viewBox="0 0 320 180" fill="none" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-      <CanvasBg label="BRAS // CURL MARTEAU (BRACHIAL & AVANT-BRAS)" />
+      <CanvasBg label="BICEPS // CURL MARTEAU (BRACHIAL)" />
       <line x1="160" y1="75" x2="160" y2="125" stroke="#888" strokeWidth="12" strokeLinecap="square" />
       <circle cx="160" cy="62" r="8" fill="#888" />
       <polyline points="160,80 160,105 178,92" stroke="#888" strokeWidth="5" fill="none" />
@@ -953,7 +953,7 @@ const illustrations = {
   'ex-bra-8': () => (
     // Curl barre EZ
     <svg viewBox="0 0 320 180" fill="none" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-      <CanvasBg label="BRAS // CURL BARRE EZ" />
+      <CanvasBg label="BICEPS // CURL BARRE EZ" />
       <line x1="160" y1="75" x2="160" y2="125" stroke="#888" strokeWidth="12" strokeLinecap="square" />
       <circle cx="160" cy="62" r="8" fill="#888" />
       <polyline points="158,80 158,105 175,90" stroke="#888" strokeWidth="5" fill="none" />
@@ -968,7 +968,7 @@ const illustrations = {
   'ex-bra-9': () => (
     // Extension barre couché (Skull Crusher)
     <svg viewBox="0 0 320 180" fill="none" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-      <CanvasBg label="BRAS // SKULL CRUSHER (BARRE AU FRONT)" />
+      <CanvasBg label="TRICEPS // SKULL CRUSHER (BARRE FRONT)" />
       <rect x="70" y="112" width="180" height="10" fill="#222" stroke="#333" />
       <rect x="90" y="99" width="115" height="13" fill="#888" />
       <circle cx="218" cy="104" r="8" fill="#888" />
@@ -984,7 +984,7 @@ const illustrations = {
   'ex-bra-10': () => (
     // Dips triceps (buste vertical)
     <svg viewBox="0 0 320 180" fill="none" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-      <CanvasBg label="BRAS // DIPS PARALLÈLES (FOCUS TRICEPS)" />
+      <CanvasBg label="TRICEPS // DIPS PARALLÈLES" />
       <line x1="80" y1="95" x2="240" y2="95" stroke="#444" strokeWidth="5" />
       {/* Buste strictement vertical */}
       <line x1="160" y1="70" x2="160" y2="115" stroke="#888" strokeWidth="12" strokeLinecap="square" />
@@ -998,7 +998,7 @@ const illustrations = {
   'ex-bra-11': () => (
     // Kickback Triceps haltère
     <svg viewBox="0 0 320 180" fill="none" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-      <CanvasBg label="BRAS // KICKBACK TRICEPS HALTÈRE" />
+      <CanvasBg label="TRICEPS // KICKBACK TRICEPS" />
       <rect x="80" y="115" width="160" height="8" fill="#222" />
       {/* Torse à l'horizontale */}
       <line x1="110" y1="85" x2="190" y2="85" stroke="#888" strokeWidth="12" strokeLinecap="square" />
@@ -1015,7 +1015,7 @@ const illustrations = {
   'ex-bra-12': () => (
     // Reverse Curl
     <svg viewBox="0 0 320 180" fill="none" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-      <CanvasBg label="BRAS // REVERSE CURL (AVANT-BRAS & BRACHIAL)" />
+      <CanvasBg label="BICEPS // REVERSE CURL (AVANT-BRAS)" />
       <line x1="160" y1="75" x2="160" y2="125" stroke="#888" strokeWidth="12" strokeLinecap="square" />
       <circle cx="160" cy="62" r="8" fill="#888" />
       <polyline points="158,80 158,105 175,90" stroke="#888" strokeWidth="5" fill="none" />

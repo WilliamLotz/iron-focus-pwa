@@ -77,14 +77,52 @@ export function getUserData(userId = null) {
   }
   try {
     const parsed = JSON.parse(raw);
+    let changed = false;
+
     if (parsed && Array.isArray(parsed.exercises)) {
       const existingIds = new Set(parsed.exercises.map(e => e.id));
       const missingDefaults = DEFAULT_EXERCISES.filter(e => !existingIds.has(e.id));
       if (missingDefaults.length > 0) {
         parsed.exercises = [...parsed.exercises, ...missingDefaults];
-        localStorage.setItem(STORAGE_KEYS.USER_DATA_PREFIX + targetId, JSON.stringify(parsed));
+        changed = true;
       }
+
+      // Migration 'Bras' vers 'Biceps' ou 'Triceps'
+      parsed.exercises = parsed.exercises.map(ex => {
+        if (ex.muscleGroup === 'Bras') {
+          changed = true;
+          const isTriceps = /triceps|dips|skull|extension/i.test(ex.name);
+          return { ...ex, muscleGroup: isTriceps ? 'Triceps' : 'Biceps' };
+        }
+        return ex;
+      });
     }
+
+    // Migration des muscles ciblés des programmes
+    if (parsed && Array.isArray(parsed.workouts)) {
+      parsed.workouts = parsed.workouts.map(w => {
+        if (w.targetMuscles && w.targetMuscles.includes('Bras')) {
+          changed = true;
+          const newMuscles = [];
+          w.targetMuscles.forEach(m => {
+            if (m === 'Bras') {
+              if (/push/i.test(w.name)) newMuscles.push('Triceps');
+              else if (/pull/i.test(w.name)) newMuscles.push('Biceps');
+              else newMuscles.push('Biceps', 'Triceps');
+            } else {
+              newMuscles.push(m);
+            }
+          });
+          return { ...w, targetMuscles: [...new Set(newMuscles)] };
+        }
+        return w;
+      });
+    }
+
+    if (changed) {
+      localStorage.setItem(STORAGE_KEYS.USER_DATA_PREFIX + targetId, JSON.stringify(parsed));
+    }
+
     return parsed;
   } catch (e) {
     console.error('Erreur lecture données', e);

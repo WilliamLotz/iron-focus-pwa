@@ -14,10 +14,10 @@ import {
   CartesianGrid,
   Legend
 } from 'recharts';
-import { TrendingUp, BarChart2, PieChart as PieIcon, Calendar, Dumbbell, Clock, ChevronDown, ChevronUp } from 'lucide-react';
+import { TrendingUp, BarChart2, PieChart as PieIcon, Calendar, Dumbbell, Clock, ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
 import { calculate1RM } from '../utils/formulas';
 
-export default function StatsView({ userData }) {
+export default function StatsView({ userData, onDeleteSession }) {
   const { exercises = [], history = [] } = userData;
 
   // Exercice sélectionné pour le graphique de progression 1RM
@@ -30,6 +30,7 @@ export default function StatsView({ userData }) {
 
   // État d'expansion des séances dans le journal
   const [expandedSessionId, setExpandedSessionId] = useState(null);
+  const [sessionToDelete, setSessionToDelete] = useState(null);
 
   // 1. Données pour la courbe d'évolution 1RM et charge max
   const exercise1RMData = useMemo(() => {
@@ -103,16 +104,23 @@ export default function StatsView({ userData }) {
       'Dos': 0,
       'Jambes': 0,
       'Épaules': 0,
-      'Bras': 0,
+      'Biceps': 0,
+      'Triceps': 0,
       'Abdos': 0
     };
 
     history.forEach(session => {
       session.exercises?.forEach(exItem => {
         const catalog = exercises.find(e => e.id === exItem.exerciseId);
-        if (catalog && counts[catalog.muscleGroup] !== undefined) {
-          const setsCount = exItem.sets?.filter(s => s.completed)?.length || 0;
-          counts[catalog.muscleGroup] += setsCount;
+        if (catalog) {
+          let mg = catalog.muscleGroup;
+          if (mg === 'Bras') {
+            mg = /triceps|dips|skull|extension/i.test(catalog.name) ? 'Triceps' : 'Biceps';
+          }
+          if (counts[mg] !== undefined) {
+            const setsCount = exItem.sets?.filter(s => s.completed)?.length || 0;
+            counts[mg] += setsCount;
+          }
         }
       });
     });
@@ -122,7 +130,8 @@ export default function StatsView({ userData }) {
       'Dos': '#3B82F6',
       'Jambes': '#10B981',
       'Épaules': '#F59E0B',
-      'Bras': '#8B5CF6',
+      'Biceps': '#8B5CF6',
+      'Triceps': '#06B6D4',
       'Abdos': '#EC4899'
     };
 
@@ -473,6 +482,22 @@ export default function StatsView({ userData }) {
                           </div>
                         );
                       })}
+
+                      {onDeleteSession && (
+                        <div className="pt-2 flex justify-end">
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSessionToDelete(session);
+                            }}
+                            className="text-[10px] font-mono text-[#EF4444] hover:text-[#DC2626] flex items-center gap-1.5 px-2 py-1 bg-[#1C0D0D] border border-[#EF4444]/40 uppercase tracking-wider cursor-pointer"
+                          >
+                            <Trash2 size={12} />
+                            SUPPRIMER CETTE SÉANCE
+                          </button>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
@@ -481,6 +506,42 @@ export default function StatsView({ userData }) {
           </div>
         )}
       </div>
+
+      {/* Modale de Confirmation de Suppression de Séance */}
+      {sessionToDelete && (
+        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-[#141414] border-2 border-[#EF4444] max-w-sm w-full p-4 space-y-3">
+            <div className="flex items-center gap-2 text-[#EF4444]">
+              <Trash2 size={18} />
+              <span className="font-mono font-black text-sm uppercase tracking-wider">
+                SUPPRIMER LA SÉANCE
+              </span>
+            </div>
+            <p className="font-mono text-xs text-[#CCC] leading-relaxed">
+              Voulez-vous supprimer définitivement la séance <strong className="text-white">"{sessionToDelete.workoutName}"</strong> du {new Date(sessionToDelete.date).toLocaleDateString('fr-FR')} de votre historique ?
+            </p>
+            <div className="flex gap-2 pt-2">
+              <button
+                type="button"
+                onClick={() => setSessionToDelete(null)}
+                className="flex-1 bg-[#262626] hover:bg-[#333] text-white py-2 text-xs font-mono font-bold uppercase transition-colors cursor-pointer"
+              >
+                ANNULER
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  onDeleteSession(sessionToDelete.id);
+                  setSessionToDelete(null);
+                }}
+                className="flex-1 bg-[#EF4444] hover:bg-[#DC2626] text-white py-2 text-xs font-mono font-black uppercase tracking-wider transition-colors cursor-pointer"
+              >
+                SUPPRIMER
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

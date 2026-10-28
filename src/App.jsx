@@ -107,7 +107,15 @@ export default function App() {
   const handleDeleteWorkout = (workoutId) => {
     updateUserDataState(prev => ({
       ...prev,
-      workouts: prev.workouts.filter(w => w.id !== workoutId)
+      workouts: (prev.workouts || []).filter(w => w.id !== workoutId)
+    }));
+  };
+
+  // Supprimer une séance de l'historique
+  const handleDeleteSession = (sessionId) => {
+    updateUserDataState(prev => ({
+      ...prev,
+      history: (prev.history || []).filter(s => s.id !== sessionId)
     }));
   };
 
@@ -195,6 +203,7 @@ export default function App() {
           {activeTab === 'stats' && (
             <StatsView
               userData={userData}
+              onDeleteSession={handleDeleteSession}
             />
           )}
         </main>

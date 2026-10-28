@@ -11,7 +11,7 @@ export default function Navbar({ activeTab, setActiveTab, hasActiveSession }) {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-[#0A0A0A]/98 backdrop-blur-md border-t border-[#262626] pb-[max(22px,env(safe-area-inset-bottom,22px))] pt-2">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-[#0A0A0A]/98 backdrop-blur-md border-t border-[#262626] pb-[calc(max(24px,env(safe-area-inset-bottom,24px))+18px)] pt-3">
       <div className="max-w-md mx-auto grid grid-cols-5 h-12">
         {tabs.map((tab) => {
           const Icon = tab.icon;
