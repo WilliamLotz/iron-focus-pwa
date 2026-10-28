@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Play, Trash2, Edit3, X, Check, Dumbbell, Clock, Layers } from 'lucide-react';
+import { Plus, Play, Trash2, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { MUSCLE_GROUPS } from '../data/exercisesData';
 
 export default function WorkoutsView({
@@ -10,6 +10,7 @@ export default function WorkoutsView({
 }) {
   const { workouts = [], exercises = [] } = userData;
   const [isCreating, setIsCreating] = useState(false);
+  const [expandedRoutineId, setExpandedRoutineId] = useState(null);
 
   // Formulaire de création de séance
   const [name, setName] = useState('');
@@ -77,71 +78,69 @@ export default function WorkoutsView({
     setSelectedExercises([]);
   };
 
-  // Filtrage des exercices pour l'ajout
   const filteredAvailableExercises = exercises.filter(ex => {
     if (exerciseFilterMuscle === 'ALL') return true;
     return ex.muscleGroup === exerciseFilterMuscle;
   });
 
   return (
-    <div className="space-y-4 pb-36 px-4 pt-3">
-      {/* En-tête */}
+    <div className="space-y-3 pb-36 px-3.5 pt-2">
+      {/* En-tête compact */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-lg font-mono font-black text-white uppercase tracking-wider">
-            PROGRAMMES & SÉANCES
+          <h2 className="text-base font-mono font-black text-white uppercase tracking-wider">
+            MES PROGRAMMES
           </h2>
           <p className="text-[10px] font-mono text-[#737373]">
-            {workouts.length} PROGRAMMES DISPONIBLES
+            {workouts.length} ROUTINES PRÊTES
           </p>
         </div>
 
         {!isCreating && (
           <button
             onClick={() => setIsCreating(true)}
-            className="bg-[#EF4444] hover:bg-[#DC2626] text-white px-3 py-2 text-xs font-mono font-black uppercase tracking-wider flex items-center gap-1.5 transition-colors"
+            className="bg-[#EF4444] hover:bg-[#DC2626] text-white px-2.5 py-1.5 text-xs font-mono font-black uppercase tracking-wider flex items-center gap-1 transition-colors cursor-pointer"
           >
-            <Plus size={16} />
-            CRÉER UNE SÉANCE
+            <Plus size={14} />
+            CRÉER
           </button>
         )}
       </div>
 
-      {/* MODAL / FORMULAIRE DE CRÉATION DE SÉANCE */}
+      {/* FORMULAIRE DE CRÉATION DE SÉANCE */}
       {isCreating && (
-        <div className="bg-[#141414] border-2 border-[#EF4444] p-4 space-y-4">
+        <div className="bg-[#141414] border border-[#EF4444] p-3 space-y-3">
           <div className="flex items-center justify-between border-b border-[#262626] pb-2">
-            <span className="font-mono text-xs font-black uppercase text-white tracking-widest flex items-center gap-2">
-              <span className="w-2.5 h-2.5 bg-[#EF4444]"></span>
-              NOUVELLE SÉANCE SUR-MESURE
+            <span className="font-mono text-xs font-black uppercase text-white tracking-wider">
+              NOUVELLE SÉANCE
             </span>
             <button
               onClick={() => setIsCreating(false)}
               className="text-[#888] hover:text-white"
             >
-              <X size={18} />
+              <X size={16} />
             </button>
           </div>
 
           <div>
-            <label className="text-[10px] font-mono text-[#737373] tracking-widest block uppercase mb-1">
-              NOM DE LA SÉANCE
+            <label className="text-[9px] font-mono text-[#737373] tracking-widest block uppercase mb-1">
+              NOM DU PROGRAMME
             </label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="EX: UPPER BODY FORCE / PUSH JOUR 1"
-              className="w-full bg-[#0A0A0A] border border-[#262626] focus:border-[#EF4444] text-white px-3 py-2 text-xs font-mono outline-none"
+              placeholder="EX: PUSH FORCE / BRAS 3D"
+              className="w-full bg-[#0A0A0A] border border-[#262626] focus:border-[#EF4444] text-white px-3 py-1.5 text-xs font-mono outline-none uppercase"
             />
           </div>
 
-          {/* Groupes musculaires ciblés */}
+          {/* Groupes musculaires */}
           <div>
-            <label className="text-[10px] font-mono text-[#737373] tracking-widest block uppercase mb-1">
-              GROUPES MUSCULAIRES CIBLÉS
+            <label className="text-[9px] font-mono text-[#737373] tracking-widest block uppercase mb-1">
+              MUSCLES CIBLÉS
             </label>
-            <div className="flex flex-wrap gap-1.5">
+            <div className="flex flex-wrap gap-1">
               {MUSCLE_GROUPS.map(muscle => {
                 const isSelected = selectedMuscles.includes(muscle);
                 return (
@@ -149,10 +148,10 @@ export default function WorkoutsView({
                     key={muscle}
                     type="button"
                     onClick={() => toggleMuscle(muscle)}
-                    className={`px-2.5 py-1 text-[11px] font-mono font-bold uppercase border transition-colors ${
+                    className={`px-2 py-0.5 text-[10px] font-mono font-bold uppercase border transition-colors ${
                       isSelected
                         ? 'bg-[#EF4444] text-white border-[#EF4444]'
-                        : 'bg-[#0A0A0A] text-[#888] border-[#262626] hover:border-[#666]'
+                        : 'bg-[#0A0A0A] text-[#888] border-[#262626]'
                     }`}
                   >
                     {muscle}
@@ -164,70 +163,37 @@ export default function WorkoutsView({
 
           {/* Exercices sélectionnés */}
           <div>
-            <div className="flex items-center justify-between mb-1.5">
-              <label className="text-[10px] font-mono text-[#737373] tracking-widest uppercase">
-                EXERCICES DANS CETTE SÉANCE ({selectedExercises.length})
-              </label>
-            </div>
+            <label className="text-[9px] font-mono text-[#737373] tracking-widest block uppercase mb-1">
+              EXERCICES AJOUTÉS ({selectedExercises.length})
+            </label>
 
             {selectedExercises.length === 0 ? (
-              <div className="bg-[#0A0A0A] border border-dashed border-[#262626] p-3 text-center text-xs font-mono text-[#666]">
-                Aucun exercice ajouté pour le moment. Sélectionne ci-dessous.
+              <div className="bg-[#0A0A0A] border border-dashed border-[#262626] p-2.5 text-center text-xs font-mono text-[#666]">
+                Choisis les exercices ci-dessous
               </div>
             ) : (
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 {selectedExercises.map((item, idx) => {
                   const exObj = exercises.find(e => e.id === item.exerciseId);
                   return (
                     <div
                       key={item.exerciseId}
-                      className="bg-[#0A0A0A] border border-[#262626] p-2.5 space-y-2"
+                      className="bg-[#0A0A0A] border border-[#262626] p-2 flex items-center justify-between text-xs font-mono"
                     >
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-mono font-bold text-white uppercase">
-                          {idx + 1}. {exObj?.name || 'Exercice'}
+                      <span className="text-white truncate pr-2">
+                        {idx + 1}. {exObj?.name || 'Exercice'}
+                      </span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-[#888] text-[10px]">
+                          {item.targetSets}×{item.targetReps}
                         </span>
                         <button
                           type="button"
                           onClick={() => removeExerciseFromRoutine(item.exerciseId)}
-                          className="text-[#EF4444] hover:text-white p-0.5"
+                          className="text-[#EF4444] p-0.5"
                         >
-                          <Trash2 size={14} />
+                          <Trash2 size={12} />
                         </button>
-                      </div>
-
-                      <div className="grid grid-cols-3 gap-2">
-                        <div>
-                          <span className="text-[9px] font-mono text-[#737373] block uppercase">SÉRIES</span>
-                          <input
-                            type="number"
-                            min="1"
-                            max="10"
-                            value={item.targetSets}
-                            onChange={(e) => updateExerciseParam(item.exerciseId, 'targetSets', parseInt(e.target.value) || 3)}
-                            className="w-full bg-[#141414] border border-[#262626] text-white px-2 py-1 text-xs font-mono text-center"
-                          />
-                        </div>
-                        <div>
-                          <span className="text-[9px] font-mono text-[#737373] block uppercase">REPS</span>
-                          <input
-                            type="text"
-                            value={item.targetReps}
-                            onChange={(e) => updateExerciseParam(item.exerciseId, 'targetReps', e.target.value)}
-                            placeholder="8-12"
-                            className="w-full bg-[#141414] border border-[#262626] text-white px-2 py-1 text-xs font-mono text-center"
-                          />
-                        </div>
-                        <div>
-                          <span className="text-[9px] font-mono text-[#737373] block uppercase">REPOS (S)</span>
-                          <input
-                            type="number"
-                            step="15"
-                            value={item.restSeconds}
-                            onChange={(e) => updateExerciseParam(item.exerciseId, 'restSeconds', parseInt(e.target.value) || 90)}
-                            className="w-full bg-[#141414] border border-[#262626] text-white px-2 py-1 text-xs font-mono text-center"
-                          />
-                        </div>
                       </div>
                     </div>
                   );
@@ -236,18 +202,13 @@ export default function WorkoutsView({
             )}
           </div>
 
-          {/* Sélecteur d'exercices à ajouter */}
-          <div className="border-t border-[#262626] pt-3">
-            <span className="text-[10px] font-mono text-[#737373] tracking-widest block uppercase mb-2">
-              + AJOUTER UN EXERCICE AU PROGRAMME
-            </span>
-
-            {/* Filtre rapide */}
-            <div className="flex gap-1 overflow-x-auto pb-2 mb-2">
+          {/* Sélecteur d'exercices */}
+          <div className="border-t border-[#262626] pt-2">
+            <div className="flex gap-1 overflow-x-auto pb-1.5 mb-1.5">
               <button
                 type="button"
                 onClick={() => setExerciseFilterMuscle('ALL')}
-                className={`px-2 py-0.5 text-[10px] font-mono uppercase whitespace-nowrap border ${
+                className={`px-2 py-0.5 text-[9px] font-mono uppercase whitespace-nowrap border ${
                   exerciseFilterMuscle === 'ALL' ? 'bg-[#EF4444] text-white border-[#EF4444]' : 'bg-[#0A0A0A] text-[#888] border-[#262626]'
                 }`}
               >
@@ -258,7 +219,7 @@ export default function WorkoutsView({
                   key={m}
                   type="button"
                   onClick={() => setExerciseFilterMuscle(m)}
-                  className={`px-2 py-0.5 text-[10px] font-mono uppercase whitespace-nowrap border ${
+                  className={`px-2 py-0.5 text-[9px] font-mono uppercase whitespace-nowrap border ${
                     exerciseFilterMuscle === m ? 'bg-[#EF4444] text-white border-[#EF4444]' : 'bg-[#0A0A0A] text-[#888] border-[#262626]'
                   }`}
                 >
@@ -267,7 +228,7 @@ export default function WorkoutsView({
               ))}
             </div>
 
-            <div className="max-h-40 overflow-y-auto space-y-1 bg-[#0A0A0A] p-2 border border-[#262626]">
+            <div className="max-h-36 overflow-y-auto space-y-1 bg-[#0A0A0A] p-1.5 border border-[#262626]">
               {filteredAvailableExercises.map(ex => {
                 const isAlreadyIn = selectedExercises.some(item => item.exerciseId === ex.id);
                 return (
@@ -278,15 +239,12 @@ export default function WorkoutsView({
                     onClick={() => addExerciseToRoutine(ex)}
                     className={`w-full flex items-center justify-between p-1.5 text-left text-xs font-mono border ${
                       isAlreadyIn
-                        ? 'opacity-40 bg-[#111] border-[#222] text-[#666] cursor-not-allowed'
+                        ? 'opacity-40 bg-[#111] border-[#222] text-[#666]'
                         : 'bg-[#141414] hover:bg-[#1E1E1E] border-[#262626] text-white'
                     }`}
                   >
-                    <div>
-                      <span className="font-bold">{ex.name}</span>
-                      <span className="text-[10px] text-[#737373] ml-2">({ex.muscleGroup} • {ex.equipment})</span>
-                    </div>
-                    <span className="text-[11px] text-[#EF4444] font-bold">
+                    <span className="truncate pr-2 font-bold">{ex.name}</span>
+                    <span className="text-[10px] text-[#EF4444] font-bold shrink-0">
                       {isAlreadyIn ? '✓' : '+ AJOUTER'}
                     </span>
                   </button>
@@ -308,87 +266,93 @@ export default function WorkoutsView({
               onClick={handleSaveRoutine}
               className="flex-1 bg-[#EF4444] hover:bg-[#DC2626] text-white py-2 text-xs font-mono font-black uppercase tracking-wider"
             >
-              ENREGISTRER LA SÉANCE
+              ENREGISTRER
             </button>
           </div>
         </div>
       )}
 
-      {/* LISTE DES PROGRAMMES DISPONIBLES */}
-      <div className="space-y-3">
+      {/* LISTE DES PROGRAMMES DISPONIBLES (COMPACTE, SANS PAVE DE TEXTE) */}
+      <div className="space-y-2">
         {workouts.map((routine) => {
+          const isExpanded = expandedRoutineId === routine.id;
+
           return (
             <div
               key={routine.id}
-              className="bg-[#141414] border border-[#262626] hover:border-[#383838] p-4 transition-all"
+              className="bg-[#141414] border border-[#262626] p-3 transition-all"
             >
-              <div className="flex items-start justify-between mb-2">
-                <div>
-                  <h3 className="font-mono text-sm font-black text-white uppercase tracking-wider">
+              <div className="flex items-start justify-between gap-2 mb-2">
+                <div className="min-w-0 flex-1">
+                  <h3 className="font-mono text-sm font-black text-white uppercase tracking-wider truncate">
                     {routine.name}
                   </h3>
-                  <div className="flex flex-wrap gap-1.5 mt-1">
+                  <div className="flex flex-wrap gap-1 mt-1">
                     {routine.targetMuscles?.map((muscle, idx) => (
                       <span
                         key={idx}
-                        className="text-[9px] font-mono text-[#EF4444] bg-[#220D0D] border border-[#EF4444]/30 px-1.5 py-0.5 uppercase font-bold"
+                        className="text-[9px] font-mono text-[#EF4444] bg-[#220D0D] border border-[#EF4444]/30 px-1 py-0.2 uppercase font-bold"
                       >
                         {muscle}
                       </span>
                     ))}
+                    <span className="text-[9px] font-mono text-[#737373] ml-1">
+                      • {routine.exercises?.length || 0} exos
+                    </span>
                   </div>
                 </div>
 
                 {routine.isCustom && (
                   <button
                     onClick={() => onDeleteWorkout(routine.id)}
-                    className="text-[#737373] hover:text-[#EF4444] p-1"
+                    className="text-[#737373] hover:text-[#EF4444] p-1 shrink-0"
                     title="Supprimer la séance"
                   >
-                    <Trash2 size={16} />
+                    <Trash2 size={14} />
                   </button>
                 )}
               </div>
 
-              {routine.description && (
-                <p className="text-[11px] font-mono text-[#888] mb-3">
-                  {routine.description}
-                </p>
-              )}
+              {/* Bouton d'action et toggle liste d'exercices */}
+              <div className="flex items-center gap-2 pt-1">
+                <button
+                  onClick={() => onStartWorkout(routine)}
+                  className="flex-1 bg-[#EF4444] hover:bg-[#DC2626] text-white py-2.5 px-3 font-mono font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow"
+                >
+                  <Play size={13} fill="currentColor" />
+                  LANCER LA SÉANCE
+                </button>
 
-              {/* Aperçu des exercices */}
-              <div className="bg-[#0A0A0A] border border-[#262626] p-2.5 mb-3 space-y-1">
-                <span className="text-[9px] font-mono text-[#666] uppercase block mb-1">
-                  EXERCICES ({routine.exercises?.length || 0}) :
-                </span>
-                <div className="grid grid-cols-1 gap-1">
+                <button
+                  onClick={() => setExpandedRoutineId(isExpanded ? null : routine.id)}
+                  className="bg-[#0A0A0A] hover:bg-[#1A1A1A] border border-[#262626] text-[#A3A3A3] hover:text-white px-2.5 py-2.5 text-xs font-mono transition-colors shrink-0"
+                  title="Voir les exercices"
+                >
+                  {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                </button>
+              </div>
+
+              {/* Liste d'exercices déroulable uniquement si demandé */}
+              {isExpanded && (
+                <div className="mt-2.5 pt-2 border-t border-[#262626] space-y-1 bg-[#0A0A0A] p-2">
                   {routine.exercises?.map((item, idx) => {
                     const ex = exercises.find(e => e.id === item.exerciseId);
                     return (
                       <div
                         key={idx}
-                        className="flex items-center justify-between text-[11px] font-mono text-[#A3A3A3]"
+                        className="flex items-center justify-between text-[11px] font-mono text-[#CCCCCC]"
                       >
                         <span className="truncate pr-2">
                           <strong className="text-white">{idx + 1}.</strong> {ex?.name || 'Exercice'}
                         </span>
-                        <span className="tabular-nums text-white text-[10px] whitespace-nowrap">
-                          {item.targetSets} × {item.targetReps} ({item.restSeconds}s)
+                        <span className="tabular-nums text-[#888] text-[10px] shrink-0">
+                          {item.targetSets}×{item.targetReps}
                         </span>
                       </div>
                     );
                   })}
                 </div>
-              </div>
-
-              {/* Bouton de lancement */}
-              <button
-                onClick={() => onStartWorkout(routine)}
-                className="w-full bg-[#181818] hover:bg-[#EF4444] text-white border border-[#333] hover:border-[#EF4444] py-2.5 px-4 font-mono font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all active:translate-y-0.5"
-              >
-                <Play size={14} fill="currentColor" />
-                LANCER CETTE SÉANCE MAINTENANT
-              </button>
+              )}
             </div>
           );
         })}

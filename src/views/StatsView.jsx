@@ -143,19 +143,19 @@ export default function StatsView({ userData }) {
   const selectedExerciseObj = exercises.find(e => e.id === selectedExerciseId);
 
   return (
-    <div className="space-y-4 pb-36 px-4 pt-3">
-      {/* En-tête */}
+    <div className="space-y-3 pb-36 px-3.5 pt-2">
+      {/* En-tête compact */}
       <div>
-        <h2 className="text-lg font-mono font-black text-white uppercase tracking-wider">
-          STATISTIQUES & ANALYSE 1RM
+        <h2 className="text-base font-mono font-black text-white uppercase tracking-wider">
+          STATISTIQUES
         </h2>
         <p className="text-[10px] font-mono text-[#737373]">
-          {history.length} SÉANCES ENREGISTRÉES // FORMULE D'EPLEY
+          {history.length} SÉANCES ENREGISTRÉES
         </p>
       </div>
 
       {/* Onglets Graphiques */}
-      <div className="grid grid-cols-3 bg-[#141414] border border-[#262626] font-mono text-[11px] font-bold">
+      <div className="grid grid-cols-3 bg-[#141414] border border-[#262626] font-mono text-[10px] font-bold">
         <button
           onClick={() => setActiveChartTab('1rm')}
           className={`py-2 px-1 text-center uppercase tracking-wider transition-colors ${
@@ -174,7 +174,7 @@ export default function StatsView({ userData }) {
               : 'text-[#888] hover:text-white'
           }`}
         >
-          VOLUME HEBDO
+          VOLUME
         </button>
         <button
           onClick={() => setActiveChartTab('muscles')}
@@ -189,23 +189,14 @@ export default function StatsView({ userData }) {
       </div>
 
       {/* ZONE GRAPHIQUE */}
-      <div className="bg-[#141414] border border-[#262626] p-4">
+      <div className="bg-[#141414] border border-[#262626] p-3">
         {/* VUE 1 : 1RM & CHARGE MAX */}
         {activeChartTab === '1rm' && (
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-mono text-[#737373] uppercase tracking-widest">
-                // SÉLECTIONNER L'EXERCICE
-              </span>
-              <span className="text-[10px] font-mono text-[#EF4444] font-bold">
-                FORMULE D'EPLEY
-              </span>
-            </div>
-
+          <div className="space-y-2.5">
             <select
               value={selectedExerciseId}
               onChange={(e) => setSelectedExerciseId(e.target.value)}
-              className="w-full bg-[#0A0A0A] border border-[#262626] text-white px-3 py-2 text-xs font-mono outline-none font-bold uppercase"
+              className="w-full bg-[#0A0A0A] border border-[#262626] text-white px-2.5 py-1.5 text-xs font-mono outline-none font-bold uppercase"
             >
               {exercises.map(ex => (
                 <option key={ex.id} value={ex.id}>
@@ -215,8 +206,8 @@ export default function StatsView({ userData }) {
             </select>
 
             {exercise1RMData.length === 0 ? (
-              <div className="bg-[#0A0A0A] border border-[#262626] p-8 text-center text-xs font-mono text-[#666]">
-                Aucune donnée d'entraînement pour cet exercice. Effectuez une séance pour tracer la courbe.
+              <div className="bg-[#0A0A0A] border border-[#262626] p-6 text-center text-xs font-mono text-[#666]">
+                Pas encore de données pour cet exercice.
               </div>
             ) : (
               <div className="h-64 w-full pt-2">
@@ -401,15 +392,12 @@ export default function StatsView({ userData }) {
       <div className="space-y-3">
         <div className="flex items-center justify-between">
           <span className="text-xs font-mono font-black text-white uppercase tracking-wider">
-            JOURNAL D'HISTORIQUE ({history.length})
-          </span>
-          <span className="text-[10px] font-mono text-[#737373] uppercase">
-            ORDRE ANTÉCHRONOLOGIQUE
+            HISTORIQUE DES SÉANCES ({history.length})
           </span>
         </div>
 
         {history.length === 0 ? (
-          <div className="bg-[#141414] border border-[#262626] p-6 text-center text-xs font-mono text-[#666]">
+          <div className="bg-[#141414] border border-[#262626] p-4 text-center text-xs font-mono text-[#666]">
             Aucune séance terminée pour le moment.
           </div>
         ) : (
