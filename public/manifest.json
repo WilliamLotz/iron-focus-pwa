@@ -2,7 +2,8 @@
   "name": "IRON FOCUS // HARDCORE WORKOUT TRACKER",
   "short_name": "IRON FOCUS",
   "description": "Suivi de musculation en salle hardcore brutaliste, surcharge progressive et biomécanique.",
-  "start_url": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#0A0A0A",
@@ -10,19 +11,19 @@
   "categories": ["fitness", "health", "sports"],
   "icons": [
     {
-      "src": "/icon-192.png",
+      "src": "icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/icon-512.png",
+      "src": "icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/logo.svg",
+      "src": "logo.svg",
       "sizes": "any",
       "type": "image/svg+xml"
     }
