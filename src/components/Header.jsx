@@ -14,7 +14,7 @@ export default function Header({ currentUser, onOpenAuthModal, activeSession, on
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-[#0A0A0A]/95 backdrop-blur-md border-b border-[#262626] px-4 pt-[max(44px,env(safe-area-inset-top,44px))] pb-3">
+    <header className="sticky top-0 z-40 bg-[#0A0A0A]/95 backdrop-blur-md border-b border-[#262626] px-4 pt-[calc(max(56px,env(safe-area-inset-top,56px))+14px)] pb-3.5">
       <div className="max-w-md mx-auto flex items-center justify-between">
         <div className="flex items-center gap-2.5">
           <div className="w-7 h-7 bg-[#141414] border border-[#262626] flex items-center justify-center">
