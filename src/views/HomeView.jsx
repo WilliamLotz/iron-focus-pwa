@@ -132,25 +132,31 @@ export default function HomeView({
         </div>
 
         <div className="space-y-1.5">
-          {workouts.map((w) => (
-            <div
-              key={w.id}
-              onClick={() => onStartWorkout(w)}
-              className="bg-[#0A0A0A] hover:bg-[#181818] border border-[#262626] p-2.5 flex items-center justify-between transition-colors cursor-pointer"
-            >
-              <div className="min-w-0 pr-2">
-                <div className="font-mono text-xs font-bold text-white uppercase truncate">
-                  {w.name}
-                </div>
-                <div className="text-[10px] font-mono text-[#737373]">
-                  {w.exercises?.length || 0} exercices
-                </div>
-              </div>
-              <span className="shrink-0 bg-[#1A1A1A] text-white border border-[#333] px-2.5 py-1 text-[10px] font-mono font-bold uppercase">
-                LANCER
-              </span>
+          {workouts.length === 0 ? (
+            <div className="p-3 text-center text-xs font-mono text-[#666]">
+              Aucun programme. Créez-en un dans l'onglet Séances.
             </div>
-          ))}
+          ) : (
+            workouts.map((w) => (
+              <div
+                key={w.id}
+                onClick={() => onStartWorkout(w)}
+                className="bg-[#0A0A0A] hover:bg-[#181818] border border-[#262626] p-2.5 flex items-center justify-between transition-colors cursor-pointer"
+              >
+                <div className="min-w-0 pr-2">
+                  <div className="font-mono text-xs font-bold text-white uppercase truncate">
+                    {w.name}
+                  </div>
+                  <div className="text-[10px] font-mono text-[#737373]">
+                    {w.exercises?.length || 0} exercices
+                  </div>
+                </div>
+                <span className="shrink-0 bg-[#1A1A1A] text-white border border-[#333] px-2.5 py-1 text-[10px] font-mono font-bold uppercase">
+                  LANCER
+                </span>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>

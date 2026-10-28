@@ -274,8 +274,13 @@ export default function WorkoutsView({
 
       {/* LISTE DES PROGRAMMES DISPONIBLES (COMPACTE, SANS PAVE DE TEXTE) */}
       <div className="space-y-2">
-        {workouts.map((routine) => {
-          const isExpanded = expandedRoutineId === routine.id;
+        {workouts.length === 0 ? (
+          <div className="bg-[#141414] border border-[#262626] p-6 text-center text-xs font-mono text-[#666]">
+            Aucun programme enregistré. Cliquez sur "+ CRÉER" pour ajouter une séance.
+          </div>
+        ) : (
+          workouts.map((routine) => {
+            const isExpanded = expandedRoutineId === routine.id;
 
           return (
             <div
@@ -302,15 +307,17 @@ export default function WorkoutsView({
                   </div>
                 </div>
 
-                {routine.isCustom && (
-                  <button
-                    onClick={() => onDeleteWorkout(routine.id)}
-                    className="text-[#737373] hover:text-[#EF4444] p-1 shrink-0"
-                    title="Supprimer la séance"
-                  >
-                    <Trash2 size={14} />
-                  </button>
-                )}
+                <button
+                  onClick={() => {
+                    if (window.confirm(`Supprimer le programme "${routine.name}" ?`)) {
+                      onDeleteWorkout(routine.id);
+                    }
+                  }}
+                  className="text-[#737373] hover:text-[#EF4444] p-1.5 shrink-0 transition-colors cursor-pointer"
+                  title="Supprimer ce programme"
+                >
+                  <Trash2 size={15} />
+                </button>
               </div>
 
               {/* Bouton d'action et toggle liste d'exercices */}
@@ -355,7 +362,7 @@ export default function WorkoutsView({
               )}
             </div>
           );
-        })}
+        }))}
       </div>
     </div>
   );
