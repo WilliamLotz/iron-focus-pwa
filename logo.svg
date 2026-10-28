@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" fill="#0A0A0A" />
+  <rect x="32" y="32" width="448" height="448" fill="#141414" stroke="#262626" stroke-width="8" />
+  
+  <!-- Brutalist Barbells & Diamond/Square -->
+  <rect x="96" y="240" width="320" height="32" fill="#FFFFFF" />
+  <rect x="76" y="160" width="40" height="192" fill="#EF4444" />
+  <rect x="124" y="180" width="28" height="152" fill="#262626" stroke="#EF4444" stroke-width="4" />
+  <rect x="396" y="160" width="40" height="192" fill="#EF4444" />
+  <rect x="360" y="180" width="28" height="152" fill="#262626" stroke="#EF4444" stroke-width="4" />
+  
+  <!-- Center Core Brutalist Symbol -->
+  <polygon points="256,140 316,256 256,372 196,256" fill="#EF4444" />
+  <rect x="236" y="236" width="40" height="40" fill="#0A0A0A" />
+  
+  <!-- Text Tag -->
+  <text x="256" y="430" font-family="monospace" font-size="32" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="4">IRON FOCUS</text>
+</svg>
