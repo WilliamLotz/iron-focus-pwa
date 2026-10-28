@@ -84,7 +84,7 @@ export default function WorkoutsView({
   });
 
   return (
-    <div className="space-y-4 pb-24 px-4 pt-3">
+    <div className="space-y-4 pb-36 px-4 pt-3">
       {/* En-tête */}
       <div className="flex items-center justify-between">
         <div>

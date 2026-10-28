@@ -49,7 +49,7 @@ export default function HomeView({
   const recommendedRoutine = workouts.find(w => w.id === smartSuggestion.routineId) || workouts[0];
 
   return (
-    <div className="space-y-4 pb-24 px-4 pt-3">
+    <div className="space-y-4 pb-36 px-4 pt-3">
       {/* 3 MÉTRIQUES COMPACTES */}
       <div className="grid grid-cols-3 gap-2">
         <div className="bg-[#141414] p-3 border border-[#262626]">

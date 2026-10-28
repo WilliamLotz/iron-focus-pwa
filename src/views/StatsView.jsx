@@ -143,7 +143,7 @@ export default function StatsView({ userData }) {
   const selectedExerciseObj = exercises.find(e => e.id === selectedExerciseId);
 
   return (
-    <div className="space-y-4 pb-24 px-4 pt-3">
+    <div className="space-y-4 pb-36 px-4 pt-3">
       {/* En-tête */}
       <div>
         <h2 className="text-lg font-mono font-black text-white uppercase tracking-wider">

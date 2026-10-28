@@ -11,8 +11,8 @@ export default function Navbar({ activeTab, setActiveTab, hasActiveSession }) {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-[#0A0A0A] border-t border-[#262626] safe-area-bottom">
-      <div className="max-w-md mx-auto grid grid-cols-5 h-16">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-[#0A0A0A]/98 backdrop-blur-md border-t border-[#262626] pb-[max(22px,env(safe-area-inset-bottom,22px))] pt-2">
+      <div className="max-w-md mx-auto grid grid-cols-5 h-12">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -28,17 +28,17 @@ export default function Navbar({ activeTab, setActiveTab, hasActiveSession }) {
               }`}
             >
               {tab.isLive && hasActiveSession && (
-                <span className="absolute top-2 right-4 w-2 h-2 bg-[#EF4444] animate-ping" />
+                <span className="absolute top-1.5 right-4 w-2 h-2 bg-[#EF4444] animate-ping" />
               )}
               {tab.isLive && hasActiveSession && (
-                <span className="absolute top-2 right-4 w-2 h-2 bg-[#EF4444]" />
+                <span className="absolute top-1.5 right-4 w-2 h-2 bg-[#EF4444]" />
               )}
               <Icon
-                size={20}
-                className={`mb-1 ${isActive ? (tab.isLive ? 'text-[#EF4444]' : 'text-white') : 'text-[#777777]'}`}
+                size={18}
+                className={`mb-0.5 ${isActive ? (tab.isLive ? 'text-[#EF4444]' : 'text-white') : 'text-[#777777]'}`}
               />
               <span
-                className={`text-[9px] font-mono tracking-wider uppercase font-bold ${
+                className={`text-[8.5px] font-mono tracking-wider uppercase font-bold ${
                   isActive ? (tab.isLive ? 'text-[#EF4444]' : 'text-white') : 'text-[#777777]'
                 }`}
               >

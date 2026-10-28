@@ -8,6 +8,15 @@
     box-sizing: border-box;
   }
 
+  :root {
+    --sat: env(safe-area-inset-top, 44px);
+    --sab: env(safe-area-inset-bottom, 24px);
+  }
+
+  html {
+    font-size: 14px; /* Dézoome subtilement l'interface pour un rendu mobile net et compact */
+  }
+
   html, body {
     background-color: #0A0A0A;
     color: #FFFFFF;
@@ -17,12 +26,14 @@
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
     overflow-x: hidden;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
   }
 
   /* Custom dark brutalist scrollbar */
   ::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
+    width: 3px;
+    height: 3px;
   }
   ::-webkit-scrollbar-track {
     background: #0A0A0A;

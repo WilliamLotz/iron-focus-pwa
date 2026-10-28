@@ -242,9 +242,9 @@ export default function LiveView({
   };
 
   return (
-    <div className="space-y-3 pb-32">
+    <div className="space-y-3 pb-40">
       {/* EN-TÊTE COMPACT ÉPURÉ DU MODE CONCENTRATION LIVE */}
-      <div className="sticky top-[53px] z-30 bg-[#0A0A0A] border-b border-[#262626] px-3 py-1.5 shadow-md">
+      <div className="sticky top-[calc(max(44px,env(safe-area-inset-top,44px))+48px)] z-30 bg-[#0A0A0A] border-b border-[#262626] px-3 py-1.5 shadow-md">
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2 truncate">
             <span className="text-[9px] font-mono text-[#EF4444] uppercase tracking-widest font-black flex-shrink-0">
@@ -521,7 +521,7 @@ export default function LiveView({
 
       {/* BANDEAU DU CHRONOMÈTRE DE REPOS AUTOMATIQUE (EN BAS FIXE AU-DESSUS DE LA NAVBAR) */}
       {restTimer.active && (
-        <div className="fixed bottom-16 left-0 right-0 z-40 bg-[#0A0A0A] border-t-2 border-[#EF4444] shadow-2xl safe-area-bottom animate-slide-up">
+        <div className="fixed bottom-[calc(max(22px,env(safe-area-inset-bottom,22px))+56px)] left-0 right-0 z-40 bg-[#0A0A0A] border-t-2 border-[#EF4444] shadow-2xl animate-slide-up">
           <div className="max-w-md mx-auto p-3">
             {/* Barre de progression carrée */}
             <div className="w-full bg-[#1C1C1C] h-1.5 mb-2 overflow-hidden">
